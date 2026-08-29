@@ -1,6 +1,11 @@
 import random
-
+import os
 contas = []
+
+def LimparTerminal():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+LimparTerminal()
 
 
 def verificar_numero(mensagem):
@@ -80,9 +85,7 @@ def gerar_chave_acesso():
 
 
 def cadastro():
-    print("\n========== BANCO IFRN ==========")
-    print("            CADASTRO")
-    print()
+    print("\n( + ======== BANCO IFRN CADASTRO ========== + )\n")
 
     while True:
         nome = verificar_texto("Nome: ")
@@ -121,8 +124,7 @@ def login():
         print("\nNenhuma conta cadastrada!")
         return None
 
-    print("\n========== BANCO IFRN ==========")
-    print("             LOGIN")
+    print("\n( + ========== BANCO IFRN LOGIN ========== + )\n")
     print()
 
     pix = verificar_vazio("Digite sua chave Pix: ")
@@ -140,14 +142,14 @@ def login():
 
 
 def ver_conta(conta):
-    print("\n╔══════════════════════════════╗")
-    print("║          SUA CONTA           ║")
-    print("╠══════════════════════════════╣")
-    print(f"║ Nome:   {conta['nome']:<18} ║")
-    print(f"║ Pix:    {conta['pix']:<18} ║")
-    print(f"║ Chave:  {conta['chave de acesso']:<18} ║")
-    print(f"║ Saldo:  R$ {conta['saldo']:<13.2f} ║")
-    print("╚══════════════════════════════╝")
+    print("\n═════════════════════════════════════════════════")
+    print("                  SUA CONTA                 ")
+    print("═════════════════════════════════════════════════")
+    print(f" Nome:   {conta['nome']:<18}               ")
+    print(f" Pix:    {conta['pix']:<18}                ")
+    print(f" Chave:  {conta['chave de acesso']:<18}    ")
+    print(f" Saldo:  R$ {conta['saldo']:<13.2f}        ")
+    print("═════════════════════════════════════════════════")
 
 
 def ver_saldo(conta):
@@ -155,18 +157,17 @@ def ver_saldo(conta):
 
 
 def ver_extrato(conta):
-    print("\n========== EXTRATO ==========")
 
     if not conta["extrato"]:
-        print("Nenhuma movimentação realizada!")
+        print("\nExtrato: Nenhuma movimentação realizada!")
         return
 
     for movimento in conta["extrato"]:
-        print(movimento)
+        print(f"\nSeu extrato é: {movimento}")
 
 
 def deposito(conta):
-    print("\n========== DEPÓSITO ==========")
+    print("\n( + ========== DEPÓSITO ========== + )")
 
     valor = verificar_valor("Valor do depósito: R$ ")
 
@@ -180,7 +181,7 @@ def deposito(conta):
 
 
 def transferencia(conta):
-    print("\n========== TRANSFERÊNCIA ==========")
+    print("\n( + ========== TRANSFERÊNCIA ========== + )")
 
     pix_destino = verificar_vazio(
         "Chave Pix do destinatário: "
@@ -219,10 +220,10 @@ def transferencia(conta):
 
     print("\nTransferência realizada com sucesso!")
 
-
+1
 def menu_conta(conta):
     while True:
-        print("\n========== BANCO IFRN ==========")
+        print("\n( + ========== BANCO IFRN ========== + )")
         print(f"Olá, {conta['nome']}!\n")
         print("1 - Ver saldo")
         print("2 - Ver extrato")
@@ -237,24 +238,31 @@ def menu_conta(conta):
         match opcao:
 
             case 1:
+                LimparTerminal()
                 ver_saldo(conta)
 
             case 2:
+                LimparTerminal()
                 ver_extrato(conta)
 
             case 3:
+                LimparTerminal()
                 deposito(conta)
 
             case 4:
+                LimparTerminal()
                 transferencia(conta)
 
             case 5:
+                LimparTerminal()
                 ver_conta(conta)
 
             case 6:
+                LimparTerminal()
                 print(f"\nSua chave Pix é: {conta['pix']}")
 
             case 7:
+                LimparTerminal()
                 print("\nSaindo da conta...")
                 break
 
@@ -263,7 +271,7 @@ def menu_conta(conta):
 
 
 while True:
-    print("\n========== BANCO IFRN ==========")
+    print("\n( + ========== BANCO IFRN ========== + )")
     print("\n1 - Se cadastrar")
     print("2 - Entrar em uma conta")
     print("3 - Sair")
@@ -273,15 +281,17 @@ while True:
     match escolha:
 
         case 1:
+            LimparTerminal()
             cadastro()
-
         case 2:
+            LimparTerminal()
             conta_logada = login()
 
             if conta_logada is not None:
                 menu_conta(conta_logada)
 
         case 3:
+            LimparTerminal()
             print("\nSaindo do Banco IFRN...")
             break
 
